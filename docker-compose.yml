@@ -3,7 +3,7 @@ version: "3.9"
 services:
   backend:
     build: ./backend
-    container_name: fraud_backend
+    container_name: backend
     ports:
       - "8000:8000"
     depends_on:
@@ -13,13 +13,13 @@ services:
 
   ml:
     build: ./ml
-    container_name: fraud_ml
+    container_name: ml
     ports:
       - "5000:5000"
 
   nginx:
     image: nginx:latest
-    container_name: fraud_nginx
+    container_name: nginx
     ports:
       - "80:80"
     volumes:
