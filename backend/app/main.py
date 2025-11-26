@@ -1,6 +1,10 @@
 from fastapi import FastAPI
-from routers.predict import router as predict_router
+from app.routers import hairstyle
+from app.database import Base, engine
 
-app = FastAPI(title="Fraud Call Detection API")
+# создаём таблицы
+Base.metadata.create_all(bind=engine)
 
-app.include_router(predict_router, prefix="/predict")
+app = FastAPI(title="Barbershop AI App")
+
+app.include_router(hairstyle.router, prefix="/api/hairstyle")

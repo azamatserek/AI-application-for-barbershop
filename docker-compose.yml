@@ -7,15 +7,18 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - ml
+      - ml_hair
     environment:
-      - ML_SERVICE_URL=http://ml:5000
+      - ML_SERVICE_URL=http://barbershop_ml_hair:5100
 
-  ml:
-    build: ./ml
-    container_name: ml
+  ml_hair:
+    build:
+      context: ./ml_hair
+      dockerfile: Dockerfile
+    container_name: barbershop_ml_hair
     ports:
-      - "5000:5000"
+      - "5100:5100"
+
 
   nginx:
     image: nginx:latest
